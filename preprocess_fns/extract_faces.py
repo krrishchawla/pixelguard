@@ -23,7 +23,7 @@ def extract_and_save_faces(frame, frame_number, video_path, output_folder="extra
         cv2.imwrite(face_filename, face_region)
 
 # Process a video file
-def process_video(video_path):
+def extract_faces_from_video(video_path):
     # Create a directory to save face images
     if not os.path.exists("extracted_faces"):
         os.mkdir("extracted_faces")
@@ -35,7 +35,7 @@ def process_video(video_path):
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Process each frame with a progress bar
-    with tqdm(total=total_frames, desc="Processing Video", unit="frame") as pbar:
+    with tqdm(total=total_frames, desc="Extracting Faces", unit="frame") as pbar:
         frame_number = 0
         while cap.isOpened():
             ret, frame = cap.read()
@@ -49,6 +49,13 @@ def process_video(video_path):
             pbar.update(1)
 
     cap.release()
+    print()
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
 
 # Replace with the path to your video
-process_video("aaqaifqrwn.mp4")
+# extract_faces_from_video("aaqaifqrwn.mp4")

@@ -24,7 +24,7 @@ def resize_and_pad_image(image_path, output_size=(256, 256)):
 
     return image
 
-def process_folder(input_folder, output_folder):
+def resize(input_folder, output_folder):
     # Create the output folder if it doesn't exist
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
@@ -33,7 +33,7 @@ def process_folder(input_folder, output_folder):
     image_filenames = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
     # Process each image in the folder with a progress bar
-    with tqdm(total=len(image_filenames), desc="Processing Images", unit="image") as pbar:
+    with tqdm(total=len(image_filenames), desc="Resizing Images", unit="image") as pbar:
         for filename in image_filenames:
             image_path = os.path.join(input_folder, filename)
             processed_image = resize_and_pad_image(image_path)
@@ -44,9 +44,17 @@ def process_folder(input_folder, output_folder):
 
             # Update progress bar
             pbar.update(1)
+    print()
 
 # Define your input and output folders
-input_folder = 'extracted_faces'  # Folder where extracted faces are saved
-output_folder = 'processed_faces'  # Folder to save resized/padded faces
+# input_folder = 'extracted_faces'  # Folder where extracted faces are saved
+# output_folder = 'processed_faces'  # Folder to save resized/padded faces
 
-process_folder(input_folder, output_folder)
+# process_folder(input_folder, output_folder)
+
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()

@@ -56,8 +56,21 @@ def process_images(input_folder, output_folder):
 
     pbar.close()
 
+
+def main():
+    pass
+
 # Paths to your input and output folders
 input_folder = 'processed_faces'  # Folder with 256x256 face images
 output_folder = 'extracted_eyebrows'  # Folder to save extracted features
 
 process_images(input_folder, output_folder)
+
+if __name__ == "__main__":
+    main()
+    # Paths to your input and output folders
+    # input_folder = 'processed_faces'  # Folder with 256x256 face images
+    # output_folder = 'extracted_eyebrows'  # Folder to save extracted features
+
+    # process_images(input_folder, output_folder)
+
