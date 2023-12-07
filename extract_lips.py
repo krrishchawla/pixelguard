@@ -7,6 +7,7 @@ from tqdm import tqdm
 # Initialize dlib's face detector and landmark predictor
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+
 def extract_feature(image, landmarks, feature_indices):
     # Create a mask for the feature
     mask = np.zeros_like(image)
