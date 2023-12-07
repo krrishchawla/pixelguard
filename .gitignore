@@ -1,7 +1,12 @@
+# Mac DS Store
 ./DS_Store
 .DS_Store
+
+# Pycache Files
 *.pyc
 __pycache__/
+
+# Video Files
 *.mp4
 
 # Processed Image Folders
