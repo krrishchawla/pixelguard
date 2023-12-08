@@ -20,10 +20,14 @@ def extract_and_save_faces(frame, frame_number, video_path, output_folder):
         # Save the face image
         video_name = os.path.basename(video_path).replace('.mp4', '')
         face_filename = f"{output_folder}/{video_name}_{frame_number}_{i}.jpg"
-        cv2.imwrite(face_filename, face_region)
+        try:
+            cv2.imwrite(face_filename, face_region)
+            return 1
+        except cv2.error:
+            return -1
 
 # Process a video file
-def extract_faces_from_video(video_path, output_dir):
+def extract_faces_from_video(video_path, output_dir, skipped):
     # Create a directory to save face images
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
@@ -52,7 +56,9 @@ def extract_faces_from_video(video_path, output_dir):
 
             # Extract and save faces for the selected frames
             if frame_number % frame_interval == 0:
-                extract_and_save_faces(frame, selected_frame, video_path, output_dir)
+                skip = extract_and_save_faces(frame, selected_frame, video_path, output_dir)
+                if skip == -1:
+                    skipped.append(video_path)
                 selected_frame += 1
                 pbar.update(1)
 

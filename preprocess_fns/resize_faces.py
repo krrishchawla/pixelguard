@@ -24,13 +24,14 @@ def resize_and_pad_image(image_path, output_size=(256, 256)):
 
     return image
 
-def resize(input_folder, output_folder):
+def resize(input_folder, output_folder, img):
     # Create the output folder if it doesn't exist
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
     # Get all image filenames
-    image_filenames = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    image_filenames = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg')) and img.replace('.mp4', '') in f]
+    # print(image_filenames)
 
     # Process each image in the folder with a progress bar
     with tqdm(total=len(image_filenames), desc="Resizing Images", unit="image") as pbar:

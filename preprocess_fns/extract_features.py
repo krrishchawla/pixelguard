@@ -19,15 +19,20 @@ def extract_feature(image, landmarks, feature_indices):
 
     return feature
 
-def extract_lips(input_folder, output_folder):
+def extract_lips(input_folder, output_folder, img):
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
     # Initialize a progress bar
-    pbar = tqdm(total=len(os.listdir(input_folder)), desc="Extracting Lips")
+    image_filenames = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg')) and img.replace('.mp4', '') in f]
 
-    for filename in os.listdir(input_folder):
-        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+    pbar = tqdm(total=len(image_filenames), desc="Extracting Lips")
+
+
+    for filename in image_filenames:
+        if filename:
+        # if filename.lower().endswith(('.png', '.jpg', '.jpeg')) and img.replace('.mp4', '') in filename:
+            # print(filename)
             image_path = os.path.join(input_folder, filename)
             image = cv2.imread(image_path)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -51,15 +56,17 @@ def extract_lips(input_folder, output_folder):
     print()
 
 
-def extract_eyes(input_folder, output_folder):
+def extract_eyes(input_folder, output_folder, img):
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
     # Initialize a progress bar
-    pbar = tqdm(total=len(os.listdir(input_folder)), desc="Extracting Eyes")
+    image_filenames = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg')) and img.replace('.mp4', '') in f]
 
-    for filename in os.listdir(input_folder):
-        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+    pbar = tqdm(total=len(image_filenames), desc="Extracting Eyes")
+
+    for filename in image_filenames:
+        if filename:
             image_path = os.path.join(input_folder, filename)
             image = cv2.imread(image_path)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -90,15 +97,17 @@ def extract_eyes(input_folder, output_folder):
     print()
 
 
-def extract_eyebrows(input_folder, output_folder):
+def extract_eyebrows(input_folder, output_folder, img):
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)
 
     # Initialize a progress bar
-    pbar = tqdm(total=len(os.listdir(input_folder)), desc="Extracting Eyebrows")
+    image_filenames = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg')) and img.replace('.mp4', '') in f]
 
-    for filename in os.listdir(input_folder):
-        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+    pbar = tqdm(total=len(image_filenames), desc="Extracting Eyebrows")
+
+    for filename in image_filenames:
+        if filename:
             image_path = os.path.join(input_folder, filename)
             image = cv2.imread(image_path)
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
