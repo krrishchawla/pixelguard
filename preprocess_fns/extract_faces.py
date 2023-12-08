@@ -7,7 +7,7 @@ from tqdm import tqdm
 detector = dlib.get_frontal_face_detector()
 
 # Function to extract and save faces from a frame
-def extract_and_save_faces(frame, frame_number, video_path, output_folder="extracted_faces"):
+def extract_and_save_faces(frame, frame_number, video_path, output_folder):
     # Convert frame to grayscale (Dlib works with grayscale images)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # Detect faces
@@ -23,10 +23,10 @@ def extract_and_save_faces(frame, frame_number, video_path, output_folder="extra
         cv2.imwrite(face_filename, face_region)
 
 # Process a video file
-def extract_faces_from_video(video_path):
+def extract_faces_from_video(video_path, output_dir):
     # Create a directory to save face images
-    if not os.path.exists("extracted_faces"):
-        os.mkdir("extracted_faces")
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
 
     # Load the video
     cap = cv2.VideoCapture(video_path)
@@ -52,7 +52,7 @@ def extract_faces_from_video(video_path):
 
             # Extract and save faces for the selected frames
             if frame_number % frame_interval == 0:
-                extract_and_save_faces(frame, selected_frame, video_path)
+                extract_and_save_faces(frame, selected_frame, video_path, output_dir)
                 selected_frame += 1
                 pbar.update(1)
 
