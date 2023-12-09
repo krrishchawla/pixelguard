@@ -21,4 +21,6 @@ extracted*/
 processed*/
 processed_faces_real/
 
+*.pth
+
 
